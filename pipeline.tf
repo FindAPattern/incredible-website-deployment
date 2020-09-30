@@ -18,10 +18,11 @@ resource "aws_codepipeline" "pipeline" {
       version          = "1"
       output_artifacts = ["source"]
 
-      configuration {
+      configuration = {
         Owner      = "${var.github_organization}"
         Repo       = "${var.github_repository}"
         Branch     = "${var.github_branch}"
+        OAuthToken = var.github_token
       }
     }
   }
@@ -38,7 +39,7 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["artifact"]
       version = "1"
 
-      configuration {
+      configuration = {
         ProjectName = "${aws_codebuild_project.build.name}"
       }
     }
@@ -55,9 +56,9 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts = ["artifact"]
       version = "1"
 
-      configuration {
-        ApplicationName = "${aws_elastic_beanstalk_application.app.name}"
-        EnvironmentName = "${aws_elastic_beanstalk_environment.production.name}"
+      configuration = {
+        ApplicationName = "tomcatcicd"
+        EnvironmentName = "Tomcatcicd-env"
       }
     }
   }
