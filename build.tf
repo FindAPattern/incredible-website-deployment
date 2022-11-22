@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "artifacts" {
   bucket = "private-website-artifacts"
-  acl    = "private"
+  #acl    = "private"
 }
 
 resource "aws_codebuild_project" "build" {
