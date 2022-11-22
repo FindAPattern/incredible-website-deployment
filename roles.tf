@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 resource "aws_iam_role" "build" {
   name = "incredible-website-build-role"
 
@@ -243,7 +247,7 @@ resource "aws_s3_bucket_policy" "artifacts" {
   policy =<<POLICY
 {
   "Version": "2012-10-17",
-  "Id": "incredible-website-artifacts-policy",
+  "Id": "test-website-artifacts-policy",
   "Statement": [
     {
       "Sid": "incredible-website-access",
